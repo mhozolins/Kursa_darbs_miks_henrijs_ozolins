@@ -1,0 +1,13 @@
+BMW 5-Series 2012 9114 102000 3.0 Gasoline Sedan 5
+Honda Civic 2010 5766 125000 1.8 Gasoline Sedan 4
+Volkswagen Beetle 1987 6324 94000 1.6 Gasoline Coupe 7
+Chevrolet Malibu 1998 2697 165000 2.4 Gasoline Sedan 3
+Honda CR-V 1988 3162 190000 2.0 Gasoline SUV 2
+Ford Mustang 1997 5208 140000 3.8 Gasoline Coupe 4
+Honda Fit 2011 6231 110000 1.5 Gasoline Hatchback 6
+Nissan Maxima 2019 19344 48000 3.5 Gasoline Sedan 2
+Chevrolet Impala 2023 28830 8000 3.6 Gasoline Sedan 5
+Toyota Corolla 2020 15000 5000 1.8 Petrol Sedan 1
+BMW M3 2020 15000 5000 3.0 Gasoline SUV 3
+BMW M3 2020 15000 5000 3.0 Gasoline SUV 3
+Toyota Supra 1998 150000 1547845 3.0 Gasoline Coupe 1

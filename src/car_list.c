@@ -13,15 +13,15 @@ int main(int argc, char *argv[]) {
     
     if(argc > 1 && sameString(argv[1], "sort")) {
         const char *brand = "";
-        const char *sortby = "price"; // default
+        const char *sortby = "price"; 
 
-        if(argc > 2) brand = argv[2];      // optional brand
-        if(argc > 3) sortby = argv[3];     // optional sort field
+        if(argc > 2) brand = argv[2];      
+        if(argc > 3) sortby = argv[3];     
 
         struct car_list filtered[200];
         int fcount = 0;
 
-        // Filter cars by brand if provided
+        
         for(int i = 0; i < count; i++) {
             if(brand[0] == '\0' || sameString(Cars[i].Brand, brand)) {
                 filtered[fcount++] = Cars[i];

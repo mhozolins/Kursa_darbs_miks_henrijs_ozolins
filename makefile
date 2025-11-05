@@ -6,24 +6,25 @@ HDR_DIR = Headers
 BIN_DIR = executables
 TARGET = $(BIN_DIR)/car_list
 
-# All source files
-SRCS = $(SRC_DIR)/car_list.c $(HDR_DIR)/add_del_op.c $(HDR_DIR)/list_op.c \
-       $(HDR_DIR)/same_string.c $(HDR_DIR)/searchop.c
+SRCS = $(SRC_DIR)/car_list.c \
+       $(HDR_DIR)/argument_handler.c \
+       $(HDR_DIR)/add_del_op.c \
+       $(HDR_DIR)/list_op.c \
+       $(HDR_DIR)/same_string.c \
+       $(HDR_DIR)/searchop.c   # fixed filename
 
-OBJS = $(patsubst %.c,$(BIN_DIR)/%.o,$(notdir $(SRCS)))
+OBJS = $(patsubst %.c, $(BIN_DIR)/%.o, $(notdir $(SRCS)))
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-# Compile .c files in src/
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Compile .c files in Headers/
 $(BIN_DIR)/%.o: $(HDR_DIR)/%.c
 	@mkdir -p $(BIN_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -31,19 +32,20 @@ $(BIN_DIR)/%.o: $(HDR_DIR)/%.c
 clean:
 	rm -rf $(BIN_DIR)/*.o $(TARGET)
 
-.PHONY: all clean run list add delete sort
-
+# ===== CLI Commands =====
 run: $(TARGET)
-	$(TARGET)
+	./$(TARGET)
 
 list: $(TARGET)
-	$(TARGET)
+	./$(TARGET) list
 
 add: $(TARGET)
-	$(TARGET) add $(BRAND) $(MODEL) $(YEAR) $(PRICE) $(KM) $(ENGINE) $(GAS) $(TYPE) $(OWNERS)
+	./$(TARGET) add $(BRAND) $(MODEL) $(YEAR) $(PRICE) $(KM) $(ENGINE) $(GAS) $(TYPE) $(OWNERS)
 
 delete: $(TARGET)
-	$(TARGET) delete $(BRAND) $(MODEL)
+	./$(TARGET) delete $(BRAND) $(MODEL)
 
 sort: $(TARGET)
-	$(TARGET) sort $(BRAND) $(FIELD)
+	./$(TARGET) sort $(BRAND) $(FIELD)
+
+.PHONY: all clean run list add delete sort

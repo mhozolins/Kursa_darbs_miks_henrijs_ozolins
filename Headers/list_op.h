@@ -6,5 +6,6 @@
 int loadCars(struct car_list Cars[], int maxCount);
 void listCars(struct car_list Cars[], int count);
 void saveCars(struct car_list Cars[], int count);
+void freeCars(struct car_list Cars[], int count);
 
 #endif

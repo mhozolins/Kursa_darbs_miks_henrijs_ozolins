@@ -3,6 +3,6 @@
 
 #include "car_list.h"
 
-int handleArguments(int argc, char *argv[], struct car_list Cars[], int *count);
+int handleArguments(int argc, char *argv[], struct car_list **Cars, int *count);
 
 #endif

@@ -6,16 +6,45 @@
 #include "../Headers/same_string.h"
 #include "../Headers/search_op.h"
 #include "../Headers/argument_handler.h"
+#include "../Headers/single_letter_cmd.h"
 
 int main(int argc, char *argv[]) {
-    struct car_list Cars[200];
+    struct car_list *Cars = malloc(200 * sizeof(struct car_list));
+    if (Cars == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    
+    // Initialize all pointers to NULL
+    for(int i = 0; i < 200; i++) {
+        Cars[i].Brand = NULL;
+        Cars[i].Model = NULL;
+        Cars[i].gas_type = NULL;
+        Cars[i].car_type = NULL;
+    }
+    
     int count = loadCars(Cars, 200);
 
-    if(handleArguments(argc, argv, Cars, &count)) {
-        return 0; // CLI command executed
+   
+    if(argc > 1) {
+        if(isSingleLetterCommand(argc, argv)) {
+            const char *value = (argc > 2) ? argv[2] : "";
+            if(handleSingleLetterCommand(argv[1][0], value, &Cars, &count)) {
+                freeCars(Cars, count);
+                free(Cars);
+                return 0;
+            }
+        }
+        
+        
+        if(handleArguments(argc, argv, &Cars, &count)) {
+            freeCars(Cars, count);
+            free(Cars);
+            return 0;
+        }
     }
 
-    // Interactive menu
+    
     char choice;
     while(1) {
         printf("================== LABAS TACKAS.LV ========================\n");
@@ -29,8 +58,7 @@ int main(int argc, char *argv[]) {
                "D - Delete car\n"
                "Q - Quit\nChoice: ");
 
-        choice = getchar();
-        while(choice == '\n') choice = getchar();
+        scanf(" %c", &choice);
 
         if(choice=='Q' || choice=='q') break;
         else if(choice=='L' || choice=='l') listCars(Cars, count);
@@ -41,9 +69,15 @@ int main(int argc, char *argv[]) {
         else if(choice=='P' || choice=='p') sortByPrice(Cars, count);
         else if(choice=='A' || choice=='a') addCar(Cars, &count);
         else if(choice=='D' || choice=='d') deleteCar(Cars, &count);
+        else printf("Invalid choice!\n");
 
-        while(getchar()!='\n');
+        
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
     }
 
+   
+    freeCars(Cars, count);
+    free(Cars);
     return 0;
 }

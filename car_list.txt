@@ -11,3 +11,4 @@ Toyota Corolla 2020 15000 5000 1.8 Petrol Sedan 1
 BMW M3 2020 15000 5000 3.0 Gasoline SUV 3
 BMW M3 2020 15000 5000 3.0 Gasoline SUV 3
 Toyota Supra 1998 150000 1547845 3.0 Gasoline Coupe 1
+BMW 320d 2013 65000 213654 2.0 Deisel Wagon 2

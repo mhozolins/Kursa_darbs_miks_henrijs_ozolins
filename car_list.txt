@@ -1,5 +1,4 @@
 BMW 5-Series 2012 9114 102000 3.0 Gasoline Sedan 5
-Honda Civic 2010 5766 125000 1.8 Gasoline Sedan 4
 Volkswagen Beetle 1987 6324 94000 1.6 Gasoline Coupe 7
 Chevrolet Malibu 1998 2697 165000 2.4 Gasoline Sedan 3
 Honda CR-V 1988 3162 190000 2.0 Gasoline SUV 2

@@ -15,17 +15,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-    // Initialize all pointers to NULL
-    for(int i = 0; i < 200; i++) {
-        Cars[i].Brand = NULL;
-        Cars[i].Model = NULL;
-        Cars[i].gas_type = NULL;
-        Cars[i].car_type = NULL;
-    }
-    
     int count = loadCars(Cars, 200);
 
-   
     if(argc > 1) {
         if(isSingleLetterCommand(argc, argv)) {
             const char *value = (argc > 2) ? argv[2] : "";
@@ -36,7 +27,6 @@ int main(int argc, char *argv[]) {
             }
         }
         
-        
         if(handleArguments(argc, argv, &Cars, &count)) {
             freeCars(Cars, count);
             free(Cars);
@@ -44,10 +34,11 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    
     char choice;
+    char input[10];
+    
     while(1) {
-        printf("================== LABAS TACKAS.LV ========================\n");
+        printf("\n================== LABAS TACKAS.LV ========================\n");
         printf("L - Show all cars\n"
                "G - Search by fuel\n"
                "T - Search by type\n"
@@ -56,27 +47,24 @@ int main(int argc, char *argv[]) {
                "P - Sort by price\n"
                "A - Add car\n"
                "D - Delete car\n"
-               "Q - Quit\nChoice: ");
+               "Q - Quit\n\nChoice: ");
 
-        scanf(" %c", &choice);
-
-        if(choice=='Q' || choice=='q') break;
-        else if(choice=='L' || choice=='l') listCars(Cars, count);
-        else if(choice=='G' || choice=='g') searchByFuel(Cars, count);
-        else if(choice=='T' || choice=='t') searchByType(Cars, count);
-        else if(choice=='M' || choice=='m') searchByBrand(Cars, count);
-        else if(choice=='S' || choice=='s') sortByYear(Cars, count);
-        else if(choice=='P' || choice=='p') sortByPrice(Cars, count);
-        else if(choice=='A' || choice=='a') addCar(Cars, &count);
-        else if(choice=='D' || choice=='d') deleteCar(Cars, &count);
-        else printf("Invalid choice!\n");
-
-        
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
+        if (fgets(input, sizeof(input), stdin) != NULL) {
+            choice = input[0];
+            
+            if(choice=='Q' || choice=='q') break;
+            else if(choice=='L' || choice=='l') listCars(Cars, count);
+            else if(choice=='G' || choice=='g') searchByFuel(Cars, count);
+            else if(choice=='T' || choice=='t') searchByType(Cars, count);
+            else if(choice=='M' || choice=='m') searchByBrand(Cars, count);
+            else if(choice=='S' || choice=='s') sortByYear(Cars, count);
+            else if(choice=='P' || choice=='p') sortByPrice(Cars, count);
+            else if(choice=='A' || choice=='a') addCar(Cars, &count);
+            else if(choice=='D' || choice=='d') deleteCar(Cars, &count);
+            else printf("Invalid choice!\n");
+        }
     }
 
-   
     freeCars(Cars, count);
     free(Cars);
     return 0;

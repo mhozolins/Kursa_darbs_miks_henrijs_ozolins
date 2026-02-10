@@ -1,3 +1,4 @@
+
 CC = gcc
 CFLAGS = -Wall -g -IHeaders
 
@@ -11,7 +12,7 @@ SRCS = $(SRC_DIR)/car_list.c \
        $(HDR_DIR)/add_del_op.c \
        $(HDR_DIR)/list_op.c \
        $(HDR_DIR)/same_string.c \
-       $(HDR_DIR)/searchop.c \
+       $(HDR_DIR)/search_op.c \
        $(HDR_DIR)/single_letter_cmd.c \
        $(HDR_DIR)/utils.c
 
